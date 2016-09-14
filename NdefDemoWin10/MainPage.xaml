@@ -53,7 +53,7 @@
                                Foreground="{StaticResource CustomAccentBrush}" Grid.ColumnSpan="2" Margin="12,5,281,5" FontSize="12"/>
                     <TextBlock Grid.Column="1"
                        x:Name="StatusOutput" TextWrapping="Wrap" Text="{Binding StatusText}" Style="{StaticResource InfoTextBlockStyle}" 
-                       Foreground="{ThemeResource SystemControlHighlightAltAltHighBrush}"/>
+                       Foreground="{ThemeResource SystemControlHighlightAltAltHighBrush}" Margin="48,5,12,5" VerticalAlignment="Center" TextAlignment="Center"/>
                     <Image Grid.Column="2" x:Uid="StatusImg" x:Name="StatusImg" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
 

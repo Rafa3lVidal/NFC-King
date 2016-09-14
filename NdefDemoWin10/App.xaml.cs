@@ -37,6 +37,7 @@ namespace NdefDemoWin10
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
         /// <summary>

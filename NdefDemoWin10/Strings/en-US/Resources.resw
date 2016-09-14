@@ -127,16 +127,16 @@
     <value>By Rafael Vidal</value>
   </data>
   <data name="AboutText2.Text" xml:space="preserve">
-    <value>Download the open source NFC / NDEF library for Windows from:</value>
+    <value>Curta no Facebook</value>
   </data>
   <data name="AboutTextTitle.Text" xml:space="preserve">
     <value>Sobre</value>
   </data>
   <data name="AboutTwitterButton.Content" xml:space="preserve">
-    <value>For Updates: Twitter</value>
+    <value>Curta no Facebook</value>
   </data>
   <data name="AboutTwitterUri" xml:space="preserve">
-    <value>https://twitter.com/andijakl</value>
+    <value>https://facebook.com/kingapps</value>
   </data>
   <data name="Actions.Text" xml:space="preserve">
     <value>Ações</value>
@@ -157,7 +157,7 @@
     <value>Publicar URI</value>
   </data>
   <data name="BtnStopPublication.Content" xml:space="preserve">
-    <value>Parar Publicação</value>
+    <value>Cancelar</value>
   </data>
   <data name="BtnStopSubscription.Content" xml:space="preserve">
     <value>Parar Publicação</value>
@@ -195,6 +195,9 @@
   <data name="DeviceDeparted" xml:space="preserve">
     <value>Dispositivo desconectado</value>
   </data>
+  <data name="FirstStatus" xml:space="preserve">
+    <value>Clique em Iniciar NFC</value>
+  </data>
   <data name="Info.Text" xml:space="preserve">
     <value>Informações</value>
   </data>
@@ -211,10 +214,10 @@
     <value>Recebi uma mensagem inválida.</value>
   </data>
   <data name="LibraryUrlButton.Content" xml:space="preserve">
-    <value>github.com/andijakl/ndef-nfc</value>
+    <value>https://facebook.com/kingapps</value>
   </data>
   <data name="LibraryUrlButton.NavigateUri" xml:space="preserve">
-    <value>https://github.com/andijakl/ndef-nfc</value>
+    <value>https://facebook.com/kingapps</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
     <value>Instruções e Sobre</value>
@@ -301,9 +304,9 @@
     <value>This application is an open source sample for the NDEF Library for Proximity APIs / NFC.</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
-    <value>Follow on Twitter</value>
+    <value>Curta no Facebook</value>
   </data>
   <data name="TwitterButton.NavigateUri" xml:space="preserve">
-    <value>https://twitter.com/andijakl</value>
+    <value />
   </data>
 </root>

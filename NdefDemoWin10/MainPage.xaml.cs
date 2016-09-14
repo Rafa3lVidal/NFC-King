@@ -32,6 +32,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using NdefLibrary.Ndef;
 using NdefLibraryUwp.Ndef;
+using Windows.Foundation.Metadata;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -47,11 +48,14 @@ namespace NdefDemoWin10
         private long _publishingMessageId;
         private readonly CoreDispatcher _dispatcher;
         private readonly ResourceLoader _loader = new ResourceLoader();
+        
 
-
-        public MainPage()
+public MainPage()
         {
             InitializeComponent();
+        
+
+            //SetStatusOutput(string.Format(_loader.GetString("FirstStatus"), _subscriptionIdNdef));
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -62,7 +66,7 @@ namespace NdefDemoWin10
             UpdateUiForNfcStatusAsync();
         }
 
-
+      
 
         private void BtnInitNfc_Click(object sender, RoutedEventArgs routedEventArgs)
         {
