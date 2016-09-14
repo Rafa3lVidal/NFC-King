@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="Rafa3lVidal.nfcking" Publisher="CN=vidal" Version="1.1.5.0" />
+  <Identity Name="Rafa3lVidal.nfcking" Publisher="CN=vidal" Version="1.1.6.0" />
   <mp:PhoneIdentity PhoneProductId="a1868adc-3878-4241-88fb-b22d98620490" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>nfcking</DisplayName>

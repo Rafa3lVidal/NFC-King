@@ -16,7 +16,7 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MainPageItem.LeftColumnWidth" Value="210"/>
+
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
@@ -24,7 +24,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MainPageItem.LeftColumnWidth" Value="140"/>
+
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -50,7 +50,7 @@
                     <!-- Status -->
                     <TextBlock Grid.Column="0" TextWrapping="Wrap" 
                                x:Uid="Status" Style="{StaticResource InfoTextBlockStyle}" 
-                               Foreground="{ThemeResource SystemControlHighlightAltAltHighBrush}"/>
+                               Foreground="{StaticResource CustomAccentBrush}" Grid.ColumnSpan="2" Margin="12,5,281,5" FontSize="12"/>
                     <TextBlock Grid.Column="1"
                        x:Name="StatusOutput" TextWrapping="Wrap" Text="{Binding StatusText}" Style="{StaticResource InfoTextBlockStyle}" 
                        Foreground="{ThemeResource SystemControlHighlightAltAltHighBrush}"/>
@@ -58,13 +58,13 @@
 
 
                     <!-- Toggle about view -->
-                    <ToggleButton x:Name="TogglePaneButton" Grid.Column="3" 
+                    <ToggleButton x:Name="TogglePaneButton" 
                                   TabIndex="1"
                                   Content="&#xE700;"
                                   Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                                   IsChecked="{Binding IsPaneOpen, ElementName=MainSplitView, Mode=TwoWay}"
                                   AutomationProperties.Name="About"
-                                  ToolTipService.ToolTip="About" />
+                                  ToolTipService.ToolTip="About" Grid.ColumnSpan="2" />
                 </Grid>
 
                 <ScrollViewer Grid.Row="1" Margin="0,0,0,0">
@@ -93,7 +93,7 @@
 
 
         <SplitView.Pane >
-            <ScrollViewer VerticalScrollBarVisibility="Auto" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <Grid Tapped="AboutButton_Tapped">
                         <Grid.ColumnDefinitions>

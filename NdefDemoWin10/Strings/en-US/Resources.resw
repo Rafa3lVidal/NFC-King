@@ -121,10 +121,10 @@
     <value>Sobre</value>
   </data>
   <data name="AboutText.Text" xml:space="preserve">
-    <value>This simple code example for developers demonstrates how to write NFC code using the NDEF library. You can download the open source library using the NuGet package manager to directly integrate it into your project. For a fully featured tag reader / writer app, install NFC interactor for Windows Phone.</value>
+    <value>Este aplicativo permite que você escreva funções em tags NFC de forma simples e fácil. Para sua segurança, é necessário um botão para iniciar o dispositivo NFC. </value>
   </data>
   <data name="AboutText1.Text" xml:space="preserve">
-    <value>Developed by Andreas Jakl.</value>
+    <value>By Rafael Vidal</value>
   </data>
   <data name="AboutText2.Text" xml:space="preserve">
     <value>Download the open source NFC / NDEF library for Windows from:</value>
@@ -148,7 +148,7 @@
     <value>Inicializa NFC</value>
   </data>
   <data name="BtnLockTag.Content" xml:space="preserve">
-    <value>Bloquear NC</value>
+    <value>Bloquear Tag</value>
   </data>
   <data name="BtnPublishIcalendar.Content" xml:space="preserve">
     <value>Publish iCalendar (.ics) to Devices</value>
@@ -196,23 +196,19 @@
     <value>Dispositivo desconectado</value>
   </data>
   <data name="Info.Text" xml:space="preserve">
-    <value>&lt; Info</value>
+    <value>Informações</value>
   </data>
   <data name="Initialization.Text" xml:space="preserve">
     <value>Inicialização</value>
   </data>
   <data name="Instructions.Text" xml:space="preserve">
-    <value>This example app demonstrates the NDEF library for Proximity APIs.
-
-After initializing NFC, you can use the app to subscribe for NDEF messages - tapping a tag will parse four of the NDEF records supported by the NDEF library: URI, MailTo, Smart Poster, LaunchApp.
-
-You can also write a message to a tag or publish it to another device. Windows Phone can write to NDEF formatted NFC Forum Type 1 - 4 tags. To publish messages, the other device needs to support the standardized SNEP protcol.</value>
+    <value>Este aplicativo permite que você escreva funções em tags NFC de forma simples e fácil. Para sua segurança, é necessário um botão para iniciar o dispositivo NFC.</value>
   </data>
   <data name="InstructionsTitle.Text" xml:space="preserve">
     <value>Instruções</value>
   </data>
   <data name="InvalidNdef" xml:space="preserve">
-    <value>Invalid NDEF message received. {0}</value>
+    <value>Recebi uma mensagem inválida.</value>
   </data>
   <data name="LibraryUrlButton.Content" xml:space="preserve">
     <value>github.com/andijakl/ndef-nfc</value>
@@ -221,7 +217,7 @@ You can also write a message to a tag or publish it to another device. Windows P
     <value>https://github.com/andijakl/ndef-nfc</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>Instructions &amp; About</value>
+    <value>Instruções e Sobre</value>
   </data>
   <data name="PageTitleAbout" xml:space="preserve">
     <value>sobre</value>
@@ -266,22 +262,22 @@ You can also write a message to a tag or publish it to another device. Windows P
     <value>Tap a tag to lock / write protect it (warning: irreversible!)</value>
   </data>
   <data name="StatusMessageWritten" xml:space="preserve">
-    <value>Success: message published!</value>
+    <value>Sucesso!</value>
   </data>
   <data name="StatusNfcParsingError" xml:space="preserve">
-    <value>Error when parsing NFC data: {0}</value>
+    <value>Erro no processo de parsing!</value>
   </data>
   <data name="StatusPublicationError" xml:space="preserve">
-    <value>There was an error publishing this message: {0}</value>
+    <value>Ocorreu um erro no processo de publicação</value>
   </data>
   <data name="StatusPublicationStopped" xml:space="preserve">
-    <value>Stopped publishing a message</value>
+    <value>Processo de publicação parado com sucesso.</value>
   </data>
   <data name="StatusSubscribed" xml:space="preserve">
-    <value>Subscribed for NDEF messages (subscription ID: {0})</value>
+    <value>Pronto para trabalhar!</value>
   </data>
   <data name="StatusSubscriptionStopped" xml:space="preserve">
-    <value>Stopped subscription for NDEF messages</value>
+    <value>Processo de publicação parado com sucesso.</value>
   </data>
   <data name="StatusTagParsed" xml:space="preserve">
     <value>Tag parsed: {0}</value>

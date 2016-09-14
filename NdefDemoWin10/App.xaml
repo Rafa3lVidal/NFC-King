@@ -7,7 +7,7 @@
 
     <Application.Resources>
         <!-- Colors -->
-        <Color x:Key="CustomAccentColor">#0080c8</Color>
+          <Color x:Key="CustomAccentColor">#0080c8</Color>
         <SolidColorBrush x:Key="CustomAccentBrush" Color="{StaticResource SystemAccentColor}"/>
 
         <!-- Text definitions -->
