@@ -1,20 +1,4 @@
-﻿// Copyright 2012 - 2016 Andreas Jakl. All rights reserved.
-// NDEF Library for Proximity APIs / NFC
-// http://andijakl.github.io/ndef-nfc/
-// 
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <http://www.gnu.org/licenses/>.
-
+﻿
 using System;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,29 +17,30 @@ using Windows.UI.Xaml.Media.Imaging;
 using NdefLibrary.Ndef;
 using NdefLibraryUwp.Ndef;
 using Windows.Foundation.Metadata;
+using NdefDemoWin10;
 
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace NdefDemoWin10
+namespace NFCKing
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Email : Page
     {
         private ProximityDevice _device;
         private long _subscriptionIdNdef;
         private long _publishingMessageId;
         private readonly CoreDispatcher _dispatcher;
         private readonly ResourceLoader _loader = new ResourceLoader();
-        
 
-public MainPage()
+
+        public Email()
         {
             InitializeComponent();
-        
+
 
             //SetStatusOutput(string.Format(_loader.GetString("FirstStatus"), _subscriptionIdNdef));
 
@@ -64,30 +49,6 @@ public MainPage()
                 return;
             }
             _dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
-            // Update enabled / disabled state of buttons in the User Interface
-            UpdateUiForNfcStatusAsync();
-
-            // Initialize NFC
-            _device = ProximityDevice.GetDefault();
-            // Subscribe for arrived / departed events
-            if (_device != null)
-            {
-                _device.DeviceArrived += NfcDeviceArrived;
-                _device.DeviceDeparted += NfcDeviceDeparted;
-            }
-            // Update status text for UI
-            SetStatusOutput(_loader.GetString(_device != null ? "StatusInitialized" : "StatusInitFailed"));
-            // Update enabled / disabled state of buttons in the User Interface
-            UpdateUiForNfcStatusAsync();
-
-            // Only subscribe for messages if no NDEF subscription is already active
-            if (_subscriptionIdNdef != 0) return;
-            // Ask the proximity device to inform us about any kind of NDEF message received from
-            // another device or tag.
-            // Store the subscription ID so that we can cancel it later.
-            _subscriptionIdNdef = _device.SubscribeForMessage("NDEF", MessageReceivedHandler);
-            // Update status text for UI
-            SetStatusOutput(string.Format(_loader.GetString("StatusSubscribed"), _subscriptionIdNdef));
             // Update enabled / disabled state of buttons in the User Interface
             UpdateUiForNfcStatusAsync();
         }
@@ -339,148 +300,67 @@ public MainPage()
             PublishRecord(record, true);
         }
 
-        private void BtnWriteBusinessCard_Click(object sender, RoutedEventArgs e)
-        {
-            var contact = new Contact
-            {
-                FirstName = "Rafael",
-                LastName = "Vidal"
-            };
-            // Add the personal email address to the Contact object’s emails vector
-            var personalEmail = new ContactEmail { Address = "vidalraf@hotmail.com", Kind = ContactEmailKind.Work };
-            contact.Emails.Add(personalEmail);
+       
 
-            // Adds the home phone number to the Contact object’s phones vector
-            var homePhone = new ContactPhone { Number = "+1234", Kind = ContactPhoneKind.Home };
-            contact.Phones.Add(homePhone);
+        
 
-            // Adds the address to the Contact object’s addresses vector
-            var workAddress = new ContactAddress
-            {
-                StreetAddress = "Valdomiro Scussiato",
-                Locality = "Videira",
-                Region = "Brazil",
-                PostalCode = "89560000",
-                Kind = ContactAddressKind.Work
-            };
-            contact.Addresses.Add(workAddress);
-
-            contact.Websites.Add(new ContactWebsite { Uri = new Uri("http://www.nfcinteractor.com/") });
-
-            contact.JobInfo.Add(new ContactJobInfo
-            {
-                CompanyName = "Andreas Jakl",
-                Title = "Mobility Evangelist"
-            });
-            contact.Notes = "Developer of the NFC Library";
-
-            var record = new NdefVcardRecord(contact);
-
-            // Publish the record using the proximity device
-            PublishRecord(record, true);
-        }
+      
 
 
-        private void BtnWriteMailTo_Click(object sender, RoutedEventArgs e)
+        private void BtnGravaURI_Click(object sender, RoutedEventArgs e)
         {
 
-            this.Frame.Navigate(typeof(NFCKing.Email));
+            // Initialize NFC
+            _device = ProximityDevice.GetDefault();
+            // Subscribe for arrived / departed events
+            if (_device != null)
+            {
+                _device.DeviceArrived += NfcDeviceArrived;
+                _device.DeviceDeparted += NfcDeviceDeparted;
+            }
+            // Update status text for UI
+            SetStatusOutput(_loader.GetString(_device != null ? "StatusInitialized" : "StatusInitFailed"));
+            // Update enabled / disabled state of buttons in the User Interface
+            UpdateUiForNfcStatusAsync();
+
+            // Only subscribe for messages if no NDEF subscription is already active
+            if (_subscriptionIdNdef != 0) return;
+            // Ask the proximity device to inform us about any kind of NDEF message received from
+            // another device or tag.
+            // Store the subscription ID so that we can cancel it later.
+            _subscriptionIdNdef = _device.SubscribeForMessage("NDEF", MessageReceivedHandler);
+            // Update status text for UI
+            SetStatusOutput(string.Format(_loader.GetString("StatusSubscribed"), _subscriptionIdNdef));
+            // Update enabled / disabled state of buttons in the User Interface
+            UpdateUiForNfcStatusAsync();
+            // Stop publishing the message
+            StopPublishingMessage(false);
+            // Update status text for UI
+            SetStatusOutput(_loader.GetString("StatusMessageWritten"));
+
+            string email = TxtBoxEndEmail.Text;
+            string assunto = TxtBoxAssuntoEmail.Text;
+            string mensagem = TxtBoxMsgEmail.Text;
+
             // Create a new mailto record, set the relevant properties for the email
-            /*
             var record = new NdefMailtoRecord
             {
-                Address = "vidalraf@hotmail.com",
-                Subject = "Feedback for the NDEF Library",
-                Body = "I think the NDEF library is ..."
-            };
-            // Publish the record using the proximity device
-            PublishRecord(record, true); --> */
-        }
-
-        private async void BtnWriteImageTo_Click(object sender, RoutedEventArgs e)
-        {
-            // Load an image
-            // Note: Use supplied demo images from /Assets/DemoImages (copy these to the device)
-            // Normal photos will most likely be too large for NFC tags.
-
-            var openPicker = new Windows.Storage.Pickers.FileOpenPicker
-            {
-                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary,
-                ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail
-            };
-
-            // Filter to include a sample subset of file types.
-            openPicker.FileTypeFilter.Clear();
-            openPicker.FileTypeFilter.Add(".bmp");
-            openPicker.FileTypeFilter.Add(".png");
-            openPicker.FileTypeFilter.Add(".gif");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".jpg");
-
-            // Open the file picker.
-            var file = await openPicker.PickSingleFileAsync();
-
-            // file is null if user cancels the file picker.
-            if (file != null)
-            {
-                var record = await NdefMimeImageRecord.CreateFromFile(file);
-                // Publish the record using the proximity device
-                PublishRecord(record, true);
-            }
-        }
-
-        private void BtnWriteMaps_Click(object sender, RoutedEventArgs e)
-        {
-            // Create a Maps record
-            var record = new NdefGeoRecord
-            {
-                GeoType = NdefGeoRecord.NfcGeoType.MsDriveTo,
-                Latitude = 48.208415,
-                Longitude = 16.371282,
-                PlaceTitle = "Vienna, Austria"
+                Address = email,
+                Subject = assunto,
+                Body = mensagem
             };
             // Publish the record using the proximity device
             PublishRecord(record, true);
-        }
 
 
-        private void BtnWriteWindowsSettings_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NFCKing.URI));
         }
 
-        private void BtnPublishUri_Click(object sender, RoutedEventArgs e)
-        {
-            // Create a URI record
-            var record = new NdefUriRecord { Uri = "http://www.ifc.videira.edu.br" };
-            // Publish the record using the proximity device
-            PublishRecord(record, false);
-        }
-
-        private void BtnLockTag_Click(object sender, RoutedEventArgs e)
-        {
-            if (_device == null) return;
-            // Make sure we're not already publishing another message
-            StopPublishingMessage(false);
-            // Start locking tags
-            try
-            {
-                var empty = new byte[0];
-                _publishingMessageId = _device.PublishBinaryMessage("SetTagReadOnly", empty.AsBuffer(), TagLockedHandler);
-                // Update status text for UI
-                SetStatusOutput(string.Format(_loader.GetString("StatusLockingTag")));
-                // Update enabled / disabled state of buttons in the User Interface
-                UpdateUiForNfcStatusAsync();
-            }
-            catch (Exception ex)
-            {
-                SetStatusOutput(string.Format(_loader.GetString("StatusLockingNotSupported"), ex.Message));
-            }
-        }
+  
+    
 
         private void TagLockedHandler(ProximityDevice sender, long messageid)
         {
-            
+
         }
 
         private void PublishRecord(NdefRecord record, bool writeToTag)
@@ -626,24 +506,9 @@ public MainPage()
         public async void UpdateUiForNfcStatusAsync()
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-             {
-                 //BtnInitNfc.IsEnabled = (_device == null);
-
-                 // Subscription buttons
-                 //BtnSubscribeNdef.IsEnabled = (_device != null && _subscriptionIdNdef == 0);
-                 //BtnStopSubscription.IsEnabled = (_device != null && _subscriptionIdNdef != 0);
-
-                 // Publishing buttons
-                 BtnWriteBusinessCard.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnWriteMailTo.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnWriteImage.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnWriteMaps.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnWriteWindowsSettings.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnPublishUri.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnWriteLaunchApp.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 BtnLockTag.IsEnabled = (_device != null && _publishingMessageId == 0);
-                 //BtnStopPublication.IsEnabled = (_device != null && _publishingMessageId != 0);
-             });
+            {
+                
+            });
         }
         #endregion
 
@@ -657,9 +522,15 @@ public MainPage()
             //DestinationPage = typeof(Views.Email);
         }
 
-        private void BtnLinkWeb_Click(object sender, RoutedEventArgs e)
+        private void button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(NFCKing.LinkWeb));
+            this.Frame.Navigate(typeof(NFCKing.URI));
+        }
+
+
+        private void BtnVoltar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }
